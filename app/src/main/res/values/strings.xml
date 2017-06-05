@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">Kotlintest</string>
+    <!--Menu title-->
     <string name="title_today">Today</string>
     <string name="title_forecast">Forecast</string>
     <string name="title_settings">Settings</string>
+    <!--Today Fragment-->
 </resources>
