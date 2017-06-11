@@ -29,7 +29,7 @@
         app:layout_constraintStart_toStartOf="@+id/location_field"
         app:layout_constraintTop_toBottomOf="@+id/location_field" />
 
-    <com.antoine.kotlin.kotlintest.widget.DescriptionCardLayout
+    <com.antoine.kotlin.kotlintest.ui.widget.DescriptionCardLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="0dp"

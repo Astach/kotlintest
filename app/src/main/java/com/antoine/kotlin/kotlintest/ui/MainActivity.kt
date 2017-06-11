@@ -1,10 +1,9 @@
-package com.antoine.kotlin.kotlintest
+package com.antoine.kotlin.kotlintest.ui
 
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
 import android.support.v7.app.AppCompatActivity
-import android.widget.FrameLayout
-import android.widget.TextView
+import com.antoine.kotlin.kotlintest.R
 
 class MainActivity : AppCompatActivity() {
 
@@ -33,8 +32,8 @@ class MainActivity : AppCompatActivity() {
 
         val navigation = findViewById(R.id.navigation) as BottomNavigationView
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
-        if (savedInstanceState == null){
-            supportFragmentManager.beginTransaction().replace(R.id.fragment_container, TodayFragment.newInstance(), TodayFragment.name).commit()
+        if (savedInstanceState == null) {
+            supportFragmentManager.beginTransaction().replace(R.id.fragment_container, TodayFragment.Factory.newInstance(), TodayFragment.Factory.name).commit()
         }
     }
 

@@ -3,6 +3,10 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 
 android {
+    Properties properties = new Properties()
+    properties.load(project.file('local.properties').newDataInputStream())
+    def apiKey = properties.getProperty('api_key')
+
     compileSdkVersion 25
     buildToolsVersion "25.0.3"
     defaultConfig {
@@ -13,19 +17,32 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
+        buildConfigField "String", "API_KEY", apiKey
+
     }
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+
+    }
+
+    kapt {
+        generateStubs = true
     }
 }
 
+
 ext {
-    libVersion =  [
-            support : '25.3.1',
-            constraintLayout:'1.0.2',
+    libVersion = [
+            constraintLayout: '1.0.2',
+            dagger          : '2.11',
+            retrofit        : '2.3.0',
+            rxAndroid       : '2.0.1',
+            rxKotlin        : '2.0.3',
+            support         : '25.3.1'
     ]
 }
 
@@ -35,12 +52,25 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+
     implementation "com.android.support:appcompat-v7:$libVersion.support"
-    testImplementation 'junit:junit:4.12'
     implementation "com.android.support:design:$libVersion.support"
-    implementation "com.android.support.constraint:constraint-layout:$libVersion.constraintLayout"
     implementation "com.android.support:support-vector-drawable:$libVersion.support"
     implementation "com.android.support:cardview-v7:$libVersion.support"
+    implementation "com.android.support.constraint:constraint-layout:$libVersion.constraintLayout"
+    testImplementation 'junit:junit:4.12'
+    //Dagger
+    implementation "com.google.dagger:dagger:$libVersion.dagger"
+    kapt "com.google.dagger:dagger-compiler:$libVersion.dagger"
+    //Retrofit
+    implementation "com.squareup.retrofit2:retrofit:$libVersion.retrofit"
+    implementation "com.squareup.retrofit2:converter-gson:$libVersion.retrofit"
+
+    //Rx
+    implementation "io.reactivex.rxjava2:rxkotlin:$libVersion.rxKotlin"
+    implementation "io.reactivex.rxjava2:rxandroid:$libVersion.rxAndroid"
+
+
 }
 buildscript {
 }

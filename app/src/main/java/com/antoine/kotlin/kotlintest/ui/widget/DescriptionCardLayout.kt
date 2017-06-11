@@ -1,4 +1,4 @@
-package com.antoine.kotlin.kotlintest.widget
+package com.antoine.kotlin.kotlintest.ui.widget
 
 import android.content.Context
 import android.support.constraint.ConstraintLayout
