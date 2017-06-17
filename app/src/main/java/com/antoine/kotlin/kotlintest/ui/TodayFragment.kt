@@ -18,8 +18,12 @@ class TodayFragment : android.support.v4.app.Fragment(), TodayContract.View {
 
     override fun onCreateView(inflater: android.view.LayoutInflater?, container: android.view.ViewGroup?, savedInstanceState: android.os.Bundle?): android.view.View? {
         val view = inflater?.inflate(com.antoine.kotlin.kotlintest.R.layout.today_forecast_fragment_layout, container, false)
-
         return view
+    }
+
+    override fun onResume() {
+        super.onResume()
+        todayPresenter.getWeather("paris")
     }
 
 
