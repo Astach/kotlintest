@@ -1,6 +1,7 @@
 package com.antoine.kotlin.kotlintest.network
 
-import android.util.Log
+import com.antoine.kotlin.kotlintest.model.Forecast
+import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
@@ -10,20 +11,9 @@ import javax.inject.Inject
  */
 class WeatherInteractor @Inject constructor(private val weatherService: WeatherService) {
 
-    fun getCurrentWeather(townName: String) {
-        weatherService.getWeather(townName, 2)
+    fun getCurrentWeather(townName: String, numberOfDay: Int): Observable<Forecast> {
+        return weatherService.getWeather(townName, numberOfDay)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(
-                        { weather ->
-                            Log.d("test", weather.toString())     //TODO implement mapper make some operations
-                        },
-                        {
-                            e ->
-                            Log.d("test", e.toString())     //TODO implement mapper make some operations
-                            //TODO implement mapper make some operations
-
-                        }
-                )
     }
 }

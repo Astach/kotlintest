@@ -7,14 +7,25 @@ import javax.inject.Inject
 /**
  * Created by Antoine Promerova on 6/10/17.
  */
-class TodayPresenter @Inject constructor(val interactor: WeatherInteractor) : TodayContract.Presenter{
+class TodayPresenter @Inject constructor(val interactor: WeatherInteractor) : TodayContract.Presenter {
 
-    override fun getWeather(townName : String) {
-        interactor.getCurrentWeather(townName)
+    private var view: TodayContract.View? = null
+
+    override fun getWeather(townName: String, numberOfDay: Int) {
+        interactor.getCurrentWeather(townName, numberOfDay)
+                .subscribe(
+                        { weather ->
+                            if (view != null) {
+                                view!!.displayWeather(weather)
+                            }
+
+                        },
+                        {}
+                )
     }
 
     override fun setView(view: TodayContract.View) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        this.view = view
     }
 
 

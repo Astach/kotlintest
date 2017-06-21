@@ -6,6 +6,7 @@ import com.antoine.kotlin.kotlintest.network.WeatherService
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.google.gson.reflect.TypeToken
+import dagger.Module
 import dagger.Provides
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
@@ -15,7 +16,7 @@ import javax.inject.Singleton
 /**
  * Created by Antoine Promerova on 6/5/17.
  */
-@dagger.Module
+@Module
 class NetworkModule {
 
     @Provides
