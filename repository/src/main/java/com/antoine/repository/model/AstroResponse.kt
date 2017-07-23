@@ -1,8 +1,8 @@
-package com.antoine.kotlin.kotlintest.model
+package  com.antoine.repository.model
 
 import com.google.gson.annotations.SerializedName
 
-data class Astro(
+data class AstroResponse(
         @SerializedName("sunrise") val sunrise:String,
         @SerializedName("sunset") val sunset:String,
         @SerializedName("moonrise") val moonrise:String,

@@ -1,0 +1,64 @@
+apply plugin: 'com.android.library'
+
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+
+buildscript {
+    ext.kotlin_version = '1.1.3-2'
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
+}
+
+android {
+    compileSdkVersion 26
+    buildToolsVersion "26.0.0"
+
+
+    defaultConfig {
+        minSdkVersion 15
+        targetSdkVersion 26
+        versionCode 1
+        versionName "1.0"
+        buildConfigField "String", "API_KEY", rootProject.ext.api_key
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+ext {
+    libVersion = [
+            retrofit: '2.3.0',
+            rxAndroid       : '2.0.1',
+            rxKotlin        : '2.0.3',
+    ]
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+
+    compile project(':business')
+
+    //Retrofit
+    compile "com.squareup.retrofit2:retrofit:$libVersion.retrofit"
+    compile "com.squareup.retrofit2:converter-gson:$libVersion.retrofit"
+    compile "com.squareup.retrofit2:adapter-rxjava2:$libVersion.retrofit"
+
+    //Rx
+    compile "io.reactivex.rxjava2:rxkotlin:$libVersion.rxKotlin"
+    compile "io.reactivex.rxjava2:rxandroid:$libVersion.rxAndroid"
+
+    testCompile 'junit:junit:4.12'
+}

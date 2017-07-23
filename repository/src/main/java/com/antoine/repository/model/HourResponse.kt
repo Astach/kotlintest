@@ -1,13 +1,13 @@
-package com.antoine.kotlin.kotlintest.model
+package  com.antoine.repository.model
 
 import com.google.gson.annotations.SerializedName
 
 
-data class Hour(
+data class HourResponse(
         @SerializedName("temp_c") val tempCelsius: Double,
         @SerializedName("temp_f") val tempFahrenheit: Double,
         @SerializedName("is_day") val DayPosition: Int,
-        @SerializedName("condition") val condition: Condition,
+        @SerializedName("condition") val condition: ConditionResponse,
         @SerializedName("wind_mph") val windSpeedMph: Double,
         @SerializedName("wind_kph") val windSpeedKph: Double,
         @SerializedName("wind_dir") val windDirection: String,

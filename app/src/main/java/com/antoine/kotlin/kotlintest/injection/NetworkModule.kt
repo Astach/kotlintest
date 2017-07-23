@@ -1,8 +1,11 @@
 package com.antoine.kotlin.kotlintest.injection
 
-import com.antoine.kotlin.kotlintest.model.Forecast
-import com.antoine.kotlin.kotlintest.network.ApiInterceptor
-import com.antoine.kotlin.kotlintest.network.WeatherService
+import com.antoine.business.WeatherRepository
+import com.antoine.repository.ApiInterceptor
+import com.antoine.repository.WeatherMapper
+import com.antoine.repository.WeatherRepositoryImpl
+import com.antoine.repository.WeatherService
+import com.antoine.repository.model.ForecastResponse
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.google.gson.reflect.TypeToken
@@ -23,7 +26,7 @@ class NetworkModule {
     @Singleton
     fun provideRetrofit(okHttpClient: okhttp3.OkHttpClient, gson: Gson): Retrofit {
         return retrofit2.Retrofit.Builder()
-                .baseUrl(NetworkModule.URL.endpoint)
+                .baseUrl(endpoint)
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .client(okHttpClient)
@@ -35,7 +38,7 @@ class NetworkModule {
     @Singleton
     fun provideGson(): Gson {
         return GsonBuilder()
-                .registerTypeAdapter(object : TypeToken<Forecast>() {}.type, ForecastDayDeserializer())
+                .registerTypeAdapter(object : TypeToken<ForecastResponse>() {}.type, ForecastDayDeserializer())
                 .create()
     }
 
@@ -51,6 +54,13 @@ class NetworkModule {
     @Singleton
     fun provideWeatherService(retrofit: retrofit2.Retrofit): WeatherService {
         return retrofit.create(WeatherService::class.java)
+    }
+
+
+    @Provides
+    @Singleton
+    fun provideWeatherRepository(weatherService: WeatherService, weatherMapper: WeatherMapper): WeatherRepository {
+        return WeatherRepositoryImpl(weatherService, weatherMapper)
     }
 
     companion object URL {

@@ -1,7 +1,7 @@
 package com.antoine.kotlin.kotlintest
 
+import com.antoine.business.WeatherInteractor
 import com.antoine.kotlin.kotlintest.contract.TodayContract
-import com.antoine.kotlin.kotlintest.network.WeatherInteractor
 import javax.inject.Inject
 
 /**

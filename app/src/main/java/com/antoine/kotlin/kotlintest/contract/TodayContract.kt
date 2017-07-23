@@ -1,6 +1,7 @@
 package com.antoine.kotlin.kotlintest.contract
 
-import com.antoine.kotlin.kotlintest.model.Forecast
+import com.antoine.business.model.Forecast
+
 
 /**
  * Created by Antoine Promerova on 6/10/17.

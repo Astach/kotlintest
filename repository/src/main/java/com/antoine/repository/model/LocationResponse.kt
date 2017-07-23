@@ -1,8 +1,8 @@
-package com.antoine.kotlin.kotlintest.model
+package  com.antoine.repository.model
 
 import com.google.gson.annotations.SerializedName
 
-data class Location(
+data class LocationResponse(
         @SerializedName("name") val name: String,
         @SerializedName("region") val region: String,
         @SerializedName("country") val country: String,

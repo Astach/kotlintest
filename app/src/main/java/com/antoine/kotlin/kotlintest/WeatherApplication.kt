@@ -17,8 +17,8 @@ class WeatherApplication : Application() {
         super.onCreate()
     }
 
-    fun getRepositoryComponent() : UIComponent {
-        return  repositoryComponent
+    fun getRepositoryComponent(): UIComponent {
+        return repositoryComponent
     }
 
 

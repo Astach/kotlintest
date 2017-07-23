@@ -1,4 +1,4 @@
-package com.antoine.kotlin.kotlintest
+package com.antoine.repository.src.test.java.com.antoine.kotlin.kotlintest
 
 import org.junit.Test
 

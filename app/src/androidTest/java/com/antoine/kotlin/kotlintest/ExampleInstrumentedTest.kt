@@ -1,4 +1,4 @@
-package com.antoine.kotlin.kotlintest
+package com.antoine.repository.src.androidTest.java.com.antoine.kotlin.kotlintest
 
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4

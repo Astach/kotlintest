@@ -1,23 +1,21 @@
 apply plugin: 'com.android.application'
 
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 android {
-    Properties properties = new Properties()
-    properties.load(project.file('local.properties').newDataInputStream())
-    def apiKey = properties.getProperty('api_key')
-
-    compileSdkVersion 25
+    compileSdkVersion 26
     buildToolsVersion "25.0.3"
     defaultConfig {
         applicationId "com.antoine.kotlin.kotlintest"
         minSdkVersion 15
-        targetSdkVersion 25
+        targetSdkVersion 26
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
-        buildConfigField "String", "API_KEY", apiKey
+
 
     }
 
@@ -31,48 +29,64 @@ android {
 
     kapt {
         generateStubs = true
+        correctErrorTypes = true
     }
 }
 
+buildscript {
+    ext.kotlin_version = '1.1.3-2'
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath "org.jetbrains.kotlin:kotlin-android-extensions:$kotlin_version"
+    }
+}
 
 ext {
     libVersion = [
+            anko            : '0.10.1',
             constraintLayout: '1.0.2',
             dagger          : '2.11',
             retrofit        : '2.3.0',
             rxAndroid       : '2.0.1',
             rxKotlin        : '2.0.3',
-            support         : '25.4.0'
+            support         : '26.0.0-beta2'
     ]
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-    androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile project(':business')
+    compile project(':repository')
+
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
 
-    implementation "com.android.support:appcompat-v7:$libVersion.support"
-    implementation "com.android.support:design:$libVersion.support"
-    implementation "com.android.support:support-vector-drawable:$libVersion.support"
-    implementation "com.android.support:cardview-v7:$libVersion.support"
-    implementation "com.android.support.constraint:constraint-layout:$libVersion.constraintLayout"
-    testImplementation 'junit:junit:4.12'
+    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+
+    compile "com.android.support:appcompat-v7:$libVersion.support"
+    compile "com.android.support:design:$libVersion.support"
+    compile "com.android.support:support-vector-drawable:$libVersion.support"
+    compile "com.android.support:cardview-v7:$libVersion.support"
+    compile "com.android.support.constraint:constraint-layout:$libVersion.constraintLayout"
+
+    testCompile 'junit:junit:4.12'
+
     //Dagger
-    implementation "com.google.dagger:dagger:$libVersion.dagger"
+    compile "com.google.dagger:dagger:$libVersion.dagger"
     kapt "com.google.dagger:dagger-compiler:$libVersion.dagger"
-    //Retrofit
-    implementation "com.squareup.retrofit2:retrofit:$libVersion.retrofit"
-    implementation "com.squareup.retrofit2:converter-gson:$libVersion.retrofit"
-    implementation "com.squareup.retrofit2:adapter-rxjava2:$libVersion.retrofit"
-
 
     //Rx
-    implementation "io.reactivex.rxjava2:rxkotlin:$libVersion.rxKotlin"
-    implementation "io.reactivex.rxjava2:rxandroid:$libVersion.rxAndroid"
+    compile "io.reactivex.rxjava2:rxkotlin:$libVersion.rxKotlin"
+    compile "io.reactivex.rxjava2:rxandroid:$libVersion.rxAndroid"
+
+    //
+    compile "org.jetbrains.anko:anko-common:$libVersion.anko"
 
 
 }
-buildscript {
-}
+
+

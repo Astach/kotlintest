@@ -1,7 +1,6 @@
-package com.antoine.kotlin.kotlintest.network
+package com.antoine.repository
 
-import okhttp3.Interceptor
-import okhttp3.Response
+import com.example.repository.BuildConfig
 
 
 /**
@@ -15,7 +14,7 @@ class ApiInterceptor : okhttp3.Interceptor {
             val originalHttpUrl = original.url()
 
             val url = originalHttpUrl.newBuilder()
-                    .addQueryParameter(com.antoine.kotlin.kotlintest.network.ApiInterceptor.KEY.key, com.antoine.kotlin.kotlintest.BuildConfig.API_KEY)
+                    .addQueryParameter(key, BuildConfig.API_KEY)
                     .build()
 
             val requestBuilder = original.newBuilder()

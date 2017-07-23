@@ -30,10 +30,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val navigation = findViewById(R.id.navigation) as BottomNavigationView
+        val navigation: BottomNavigationView = findViewById(R.id.navigation)
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
         if (savedInstanceState == null) {
-            supportFragmentManager.beginTransaction().replace(R.id.fragment_container, TodayFragment.Factory.newInstance(), TodayFragment.Factory.name).commit()
+            supportFragmentManager.beginTransaction().replace(R.id.fragment_container, TodayFragment.newInstance(), TodayFragment.name).commit()
         }
     }
 
