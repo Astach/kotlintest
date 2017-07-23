@@ -5,9 +5,6 @@ import com.antoine.kotlin.kotlintest.injection.DaggerUIComponent
 import com.antoine.kotlin.kotlintest.injection.NetworkModule
 import com.antoine.kotlin.kotlintest.injection.UIComponent
 
-/**
- * Created by Antoine Promerova on 6/8/17.
- */
 class WeatherApplication : Application() {
     private val repositoryComponent: UIComponent = DaggerUIComponent.builder()
             .networkModule(NetworkModule())
