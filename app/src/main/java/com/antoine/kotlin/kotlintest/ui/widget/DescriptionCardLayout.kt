@@ -8,6 +8,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.antoine.business.model.Forecast
 import com.antoine.kotlin.kotlintest.R
+import com.squareup.picasso.Picasso
 
 /**
  * Created by Antoine Promerova on 6/5/17.
@@ -33,8 +34,8 @@ class DescriptionCardLayout : ConstraintLayout {
     fun setWeather(forecast: Forecast) {
         description.text = forecast.current.condition.description
         temperature.text = resources.getString(R.string.temperature, forecast.current.maxTempCelsius)
-        humidity.text = resources.getString(R.string.humidity, forecast.current.avgHumidity)
-        // image =forecast.current.condition.iconUrl
+        humidity.text = resources.getString(R.string.humidity, forecast.current.avgHumidity, "%")
+        Picasso.with(context).load("https:" + forecast.current.condition.iconUrl).into(image)
     }
 
 

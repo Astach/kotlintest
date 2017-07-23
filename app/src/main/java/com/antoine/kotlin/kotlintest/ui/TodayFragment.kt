@@ -44,7 +44,6 @@ class TodayFragment : Fragment(), TodayContract.View {
 
         location_field.text = resources.getString(R.string.location, forecast.location.name, forecast.location.country)
         feelslike_field.text = resources.getString(R.string.feels_like, forecast.current.feelsLikeCelsius)
-        Toast.makeText(context, resources.getString(R.string.feels_like, forecast.current.feelsLikeCelsius), Toast.LENGTH_LONG).show()
         description_container.setWeather(forecast)
     }
 }
