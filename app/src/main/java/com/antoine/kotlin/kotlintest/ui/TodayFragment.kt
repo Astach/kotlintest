@@ -1,6 +1,7 @@
 package com.antoine.kotlin.kotlintest.ui
 
 import android.support.v4.app.Fragment
+import android.widget.Toast
 import com.antoine.business.model.Forecast
 import com.antoine.kotlin.kotlintest.R
 import com.antoine.kotlin.kotlintest.TodayPresenter
@@ -9,9 +10,6 @@ import com.antoine.kotlin.kotlintest.contract.TodayContract
 import kotlinx.android.synthetic.main.today_forecast_fragment_layout.*
 import javax.inject.Inject
 
-/**
- * Created by Antoine Promerova on 6/5/17.
- */
 
 class TodayFragment : Fragment(), TodayContract.View {
 
@@ -31,7 +29,7 @@ class TodayFragment : Fragment(), TodayContract.View {
     override fun onResume() {
         super.onResume()
         todayPresenter.setView(this)
-        todayPresenter.getWeather("paris")
+        todayPresenter.getWeather()
     }
 
     companion object Factory {
@@ -43,7 +41,10 @@ class TodayFragment : Fragment(), TodayContract.View {
     }
 
     override fun displayWeather(forecast: Forecast) {
+
+        location_field.text = resources.getString(R.string.location, forecast.location.name, forecast.location.country)
+        feelslike_field.text = resources.getString(R.string.feels_like, forecast.current.feelsLikeCelsius)
+        Toast.makeText(context, resources.getString(R.string.feels_like, forecast.current.feelsLikeCelsius), Toast.LENGTH_LONG).show()
         description_container.setWeather(forecast)
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 }

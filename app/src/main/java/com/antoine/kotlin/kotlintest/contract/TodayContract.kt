@@ -8,7 +8,7 @@ import com.antoine.business.model.Forecast
  */
 interface TodayContract {
     interface Presenter : BasePresenter<View> {
-        fun getWeather(townName: String, numberOfDay: Int = 1)
+        fun getWeather(townName: String = "oslo", numberOfDay: Int = 1)
     }
 
     interface View : BaseView {

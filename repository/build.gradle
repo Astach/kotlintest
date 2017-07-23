@@ -37,9 +37,11 @@ android {
 
 ext {
     libVersion = [
-            retrofit: '2.3.0',
-            rxAndroid       : '2.0.1',
-            rxKotlin        : '2.0.3',
+            javaxAnnotation: '1.0',
+            javaxInject    : '1',
+            retrofit       : '2.3.0',
+            rxAndroid      : '2.0.1',
+            rxKotlin       : '2.0.3',
     ]
 }
 
@@ -59,6 +61,10 @@ dependencies {
     //Rx
     compile "io.reactivex.rxjava2:rxkotlin:$libVersion.rxKotlin"
     compile "io.reactivex.rxjava2:rxandroid:$libVersion.rxAndroid"
+
+    //
+    compile "javax.annotation:jsr250-api:${libVersion.javaxAnnotation}"
+    compile "javax.inject:javax.inject:${libVersion.javaxInject}"
 
     testCompile 'junit:junit:4.12'
 }

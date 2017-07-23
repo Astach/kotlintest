@@ -6,9 +6,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
-/**
- * Created by Antoine Promerova on 6/10/17.
- */
+
 class TodayPresenter @Inject constructor(val interactor: WeatherInteractor) : TodayContract.Presenter {
 
     private var view: TodayContract.View? = null

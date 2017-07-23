@@ -22,19 +22,19 @@ class DescriptionCardLayout : ConstraintLayout {
     constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs) {
         LayoutInflater.from(context).inflate(R.layout.description_card_layout, this)
 
-        description = findViewById(R.id.description_field)
-        temperature = findViewById(R.id.temp_field)
-        humidity = findViewById(R.id.humidity_field)
-        image = findViewById(R.id.image_view)
+        description = findViewById(R.id.description_field) as TextView
+        temperature = findViewById(R.id.temp_field) as TextView
+        humidity = findViewById(R.id.humidity_field) as TextView
+        image = findViewById(R.id.image_view) as ImageView
     }
 
     constructor(context: Context?) : this(context, null)
 
     fun setWeather(forecast: Forecast) {
         description.text = forecast.current.condition.description
-        temperature.text = forecast.current.maxTempCelsius.toString()
-        humidity.text =forecast.current.avgHumidity.toString()
-       // image =forecast.current.condition.iconUrl
+        temperature.text = resources.getString(R.string.temperature, forecast.current.maxTempCelsius)
+        humidity.text = resources.getString(R.string.humidity, forecast.current.avgHumidity)
+        // image =forecast.current.condition.iconUrl
     }
 
 

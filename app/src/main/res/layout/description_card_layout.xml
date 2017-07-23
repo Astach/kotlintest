@@ -40,7 +40,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/default_margin"
-                android:text="Partly Cloudy"
                 app:layout_constraintStart_toEndOf="@+id/image_view"
                 app:layout_constraintTop_toTopOf="parent"
                 android:layout_marginTop="0dp"
@@ -53,7 +52,6 @@
                 android:layout_marginLeft="@dimen/medium_margin"
                 android:layout_marginStart="@dimen/medium_margin"
                 android:layout_marginTop="@dimen/default_margin"
-                android:text="Humidity : 46%"
                 app:layout_constraintStart_toEndOf="@+id/temp_field"
                 app:layout_constraintTop_toBottomOf="@+id/description_field" />
 
@@ -64,7 +62,6 @@
                 android:layout_marginLeft="@dimen/default_margin"
                 android:layout_marginStart="@dimen/default_margin"
                 android:layout_marginTop="@dimen/default_margin"
-                android:text="Temperature 22*"
                 app:layout_constraintStart_toEndOf="@+id/image_view"
                 app:layout_constraintTop_toBottomOf="@+id/description_field" />
         </android.support.constraint.ConstraintLayout>
